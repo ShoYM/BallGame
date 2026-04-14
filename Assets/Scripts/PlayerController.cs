@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 0;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
+    public GameObject loseTextObject;
+    public GameObject RetryButton;
     private Rigidbody rb;
     private int count;
     private float movementX;
@@ -20,6 +22,8 @@ public class PlayerController : MonoBehaviour
         count = 0;
         SetCountText();
         winTextObject.SetActive(false);
+        loseTextObject.SetActive(false);
+        RetryButton.SetActive(false);
     }
 
     void OnMove(InputValue movementValue)
@@ -36,6 +40,8 @@ public class PlayerController : MonoBehaviour
         if(count >= 4)
         {
             winTextObject.SetActive(true);
+            RetryButton.SetActive(true);
+            Destroy(gameObject);
         }
     }
     void FixedUpdate()
@@ -52,6 +58,13 @@ public class PlayerController : MonoBehaviour
             count++;
 
             SetCountText();
+        }
+
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+            loseTextObject.SetActive(true);
+            RetryButton.SetActive(true);
         }
     }
 }
