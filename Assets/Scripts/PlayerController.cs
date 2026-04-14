@@ -6,11 +6,11 @@ using System.Security.Cryptography.X509Certificates;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 0;
-    public TextMeshProUGUI countText;
-    public GameObject winTextObject;
-    public GameObject loseTextObject;
-    public GameObject RetryButton;
+    [SerializeField] private float speed = 0.0f;
+    [SerializeField] private TextMeshProUGUI countText;
+    [SerializeField] private GameObject winTextObject;
+    [SerializeField] private GameObject loseTextObject;
+    [SerializeField] private GameObject RetryButton;
     private Rigidbody rb;
     private int count;
     private float movementX;
