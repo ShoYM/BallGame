@@ -2,17 +2,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 using System.Security.Cryptography.X509Certificates;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 0.0f;
     [SerializeField] private TextMeshProUGUI countText;
+    [SerializeField] private TextMeshProUGUI stageNumberText;
     [SerializeField] private GameObject winTextObject;
     [SerializeField] private GameObject loseTextObject;
-    [SerializeField] private GameObject RetryButton;
+    [SerializeField] private GameObject retryButton;
+    [SerializeField] private GameObject nextStageButton;
+    
     private Rigidbody rb;
     private int count;
+
     private float movementX;
     private float movementY;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,9 +26,11 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         count = 0;
         SetCountText();
+        SetStageText();
         winTextObject.SetActive(false);
         loseTextObject.SetActive(false);
-        RetryButton.SetActive(false);
+        retryButton.SetActive(false);
+        nextStageButton.SetActive(false);
     }
 
     void OnMove(InputValue movementValue)
@@ -40,9 +47,15 @@ public class PlayerController : MonoBehaviour
         if(count >= 4)
         {
             winTextObject.SetActive(true);
-            RetryButton.SetActive(true);
+            retryButton.SetActive(true);
+            nextStageButton.SetActive(true);
             Destroy(gameObject);
         }
+    }
+    void SetStageText()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        stageNumberText.text = "Stage: " + currentSceneIndex.ToString();
     }
     void FixedUpdate()
     {
@@ -64,7 +77,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
             loseTextObject.SetActive(true);
-            RetryButton.SetActive(true);
+            retryButton.SetActive(true);
         }
     }
 }
