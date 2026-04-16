@@ -3166,6 +3166,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1890618042100098264, guid: 196bd662342b0a34b9ef0de0e1868fc2, type: 3}
+      propertyPath: m_text
+      value: 'MISSION CLEAR
+
+        keep going?'
+      objectReference: {fileID: 0}
     - target: {fileID: 3040269062625592696, guid: 196bd662342b0a34b9ef0de0e1868fc2, type: 3}
       propertyPath: m_Name
       value: Canvas

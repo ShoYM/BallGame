@@ -43,8 +43,8 @@ public class PlayerController : MonoBehaviour
 
     void SetCountText()
     {
-        countText.text = "Count: " + count.ToString();
-        if(count >= 4)
+        countText.text = "Count: " + count.ToString() + "/3";
+        if(count >= 3)
         {
             winTextObject.SetActive(true);
             retryButton.SetActive(true);
@@ -54,8 +54,9 @@ public class PlayerController : MonoBehaviour
     }
     void SetStageText()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        stageNumberText.text = "Stage: " + currentSceneIndex.ToString();
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        int totalScenes = SceneManager.sceneCountInBuildSettings;
+        stageNumberText.text = "Stage: " + currentSceneIndex.ToString() + "/" + totalScenes.ToString();
     }
     void FixedUpdate()
     {
